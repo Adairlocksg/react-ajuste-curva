@@ -22,6 +22,7 @@ const Table = () => {
   const [coordsTwo, setCoordsTwo] = useState<Coords>({ x: 0, y: 0 });
   const [coordsThree, setCoordsThree] = useState<Coords>({ x: 0, y: 0 });
   const [labelType, setLabelType] = useState<string>("Nenhum gráfico formado");
+  const [law, setLaw] = useState<string>("");
   const [data, setData] = useState<Coords[]>([]);
   
   function bestFitModel(points: Point[]): string {
@@ -46,6 +47,8 @@ const Table = () => {
         bestModel = model;
       }
     });
+
+    setLaw(bestModel.model.string);
 
     return bestModel.name;
   }
@@ -140,6 +143,7 @@ const Table = () => {
         </button>
       </div>
       <h3>{labelType}</h3>
+      <h3>{law}</h3>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
